@@ -30,6 +30,7 @@ let time = 0;
 
 let gameStarted = false;
 let prevCard = null;
+let matchedCards = [];
 
 
 const parentDiv = document.querySelector('#card-section');
@@ -53,6 +54,7 @@ const card_matches = () => {
 
     card_selected.forEach((curElement) => {
         curElement.classList.add('card_match')
+        matchedCards.push(curElement);
     })
 }
 
@@ -82,7 +84,7 @@ const card_matches = () => {
             let curCard = event.target;
             // console.log(curCard)
     
-            if(curCard.id === "card-section" || curCard.parentNode.classList.contains('card_selected'))
+            if(curCard.id === "card-section" || curCard.parentNode.classList.contains('card_selected')||  matchedCards.includes(curCard.parentNode))
             {
                 return false;
             }
