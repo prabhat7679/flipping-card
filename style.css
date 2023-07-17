@@ -81,3 +81,37 @@
         color: white;
         border-radius: 10px;
     }
+
+    @media screen and (max-width: 630px) {
+        body {
+          gap: 1rem;
+          padding: 1rem;
+          /* height: none; */
+        }
+      
+        #card-section {
+          grid-template-columns: repeat(4, 1fr);
+          padding: 1rem;
+        }
+      
+        .card,
+        .back-card,
+        .front-card {
+          height: 3rem;
+          width: 3rem;
+        }
+      
+        .front-card,
+        .back-card {
+          padding: 1rem;
+        }
+      
+        .stats {
+          font-size: 1.2em;
+        }
+      
+        #startButton {
+          font-size: 1.2em;
+        }
+      }
+      
