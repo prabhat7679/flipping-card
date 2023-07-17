@@ -27,27 +27,25 @@ const fruitImageArray=[
      
 let moves = 0;
 let time = 0;
-let timer;
 
 let gameStarted = false;
+let prevCard = null;
 
 
 const parentDiv = document.querySelector('#card-section');
 
 // step 2 to duplicate each card
 const gameCard = fruitImageArray.concat(fruitImageArray)
-console.log(gameCard)
+// console.log(gameCard)
 
 // steps 3
 
 //  shuffledChild array
 let shuffledChild = Array.from(gameCard).sort(() => 0.5 - Math.random());
 
-
 let clickCount = 0;
 let firstCard = "";
 let secondCard = "";
-
 
 // styling the match card
 const card_matches = () => {
@@ -71,6 +69,8 @@ const card_matches = () => {
         curElement.classList.remove('card_selected')
         })
 
+        prevCard = null;
+
     }
 
     // step 4
@@ -80,11 +80,16 @@ const card_matches = () => {
        
         parentDiv.addEventListener('click', (event) => {
             let curCard = event.target;
+            // console.log(curCard)
     
-            if(curCard.id === "card-section")
+            if(curCard.id === "card-section" || curCard.parentNode.classList.contains('card_selected'))
             {
                 return false;
             }
+
+            if (curCard.parentNode === prevCard) {
+                return false;
+              }
     
             clickCount ++;
     
@@ -93,9 +98,11 @@ const card_matches = () => {
                 if(clickCount === 1){
                     firstCard = curCard.parentNode.dataset.name;
                     curCard.parentNode.classList.add('card_selected');
+                    prevCard = curCard.parentNode;
                 }else{
                     secondCard = curCard.parentNode.dataset.name;
                     curCard.parentNode.classList.add('card_selected');
+                    prevCard = curCard.parentNode;
                 }
     
                 if(firstCard !== "" && secondCard !== ""){
