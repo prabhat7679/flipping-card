@@ -24,6 +24,13 @@ const fruitImageArray=[
       'img':'https://tiimg.tistatic.com/fp/1/007/054/fresh-yellow-whole-papaya-fruit-458.jpg'
    }
 ]
+     
+let moves = 0;
+let time = 0;
+let timer;
+
+let gameStarted = false;
+
 
 const parentDiv = document.querySelector('#card-section');
 
@@ -33,7 +40,7 @@ console.log(gameCard)
 
 // steps 3
 
-// const shuffledChild = myNumbers(gameCard)
+//  shuffledChild array
 let shuffledChild = Array.from(gameCard).sort(() => 0.5 - Math.random());
 
 
@@ -51,7 +58,6 @@ const card_matches = () => {
     })
 }
 
-
     // step 7
 
     const resetGame = () => {
@@ -68,44 +74,56 @@ const card_matches = () => {
     }
 
     // step 4
-    parentDiv.addEventListener('click', (event) => {
-        let curCard = event.target;
-
-        if(curCard.id === "card-section")
-        {
-            return false;
-        }
-
-        clickCount ++;
-
-        if(clickCount < 3){
-
-            if(clickCount === 1){
-                firstCard = curCard.parentNode.dataset.name;
-                curCard.parentNode.classList.add('card_selected');
-            }else{
-                secondCard = curCard.parentNode.dataset.name;
-                curCard.parentNode.classList.add('card_selected');
+    function startGame() {
+    if(!gameStarted) 
+    {
+       
+        parentDiv.addEventListener('click', (event) => {
+            let curCard = event.target;
+    
+            if(curCard.id === "card-section")
+            {
+                return false;
             }
-
-            if(firstCard !== "" && secondCard !== ""){
-                if(firstCard === secondCard){
-                    // curCard.classList.add('card_match')
-                    setTimeout(() => {
-                        card_matches()
-                        resetGame()
-                    }, 1000)
-
+    
+            clickCount ++;
+    
+            if(clickCount < 3){
+    
+                if(clickCount === 1){
+                    firstCard = curCard.parentNode.dataset.name;
+                    curCard.parentNode.classList.add('card_selected');
                 }else{
-                    setTimeout(() => {
-                        resetGame()
-                    }, 1000)
+                    secondCard = curCard.parentNode.dataset.name;
+                    curCard.parentNode.classList.add('card_selected');
                 }
+    
+                if(firstCard !== "" && secondCard !== ""){
+                    if(firstCard === secondCard){
+                        // curCard.classList.add('card_match')
+                        setTimeout(() => {
+                            card_matches()
+                            resetGame()
+                        }, 1000)
+    
+                    }else{
+                        setTimeout(() => {
+                            resetGame()
+                        }, 1000)
+                    }
+                }
+    
+                moves++;
+                time++;
+                document.getElementById("moves").textContent = moves;
+                document.getElementById("time").textContent = time;
+    
             }
-
-        }
-
-    })
+    
+        })
+    }  
+     
+}
 
     for(let index=0; index<shuffledChild.length; index++){
 
@@ -127,3 +145,9 @@ const card_matches = () => {
         childDiv.appendChild(front_div)
         childDiv.appendChild(back_div)
     }
+
+document.getElementById('startButton').addEventListener('click', () => {
+    startGame();
+    document.getElementById('startButton').disabled = true;
+  });
+  

@@ -10,7 +10,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 5rem;
+    gap: 2rem;
     height: 100vh;
     background:linear-gradient(120deg,rgb(246,179,42),rgb(240,135,45),rgb(165,75,159));
 }
@@ -67,5 +67,17 @@
 
     .card_match .front-card{
         background-color:#e8d7d7;
+        /* display: block; */
        
+    }
+    .stats{
+        display: flex;
+        gap: 2em;
+        font-size: 1.4em;
+    }
+    #startButton{
+        font-size: 1.4em;
+        background-color: #2D2727;
+        color: white;
+        border-radius: 10px;
     }
