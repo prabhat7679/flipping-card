@@ -1,0 +1,71 @@
+*{
+    margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+ }
+
+
+ body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5rem;
+    height: 100vh;
+    background:linear-gradient(120deg,rgb(246,179,42),rgb(240,135,45),rgb(165,75,159));
+}
+
+    #card-section{
+         display: grid;
+         grid-template-columns: repeat(4,1fr);
+         grid-gap: 2rem;
+          /* background-color: aqua; */
+         background:linear-gradient(360deg,rgb(246,179,42),red,rgb(165,75,159));
+          padding: 2em;
+    }
+
+    .card {
+        position: relative;
+        transition: all .4s linear;
+        transform-style: preserve-3d;
+    }
+
+    .card,
+    .back-card,
+    .front-card {
+        height: 8rem;
+        width: 8rem;
+    }
+
+    .back-card,
+    .front-card {
+       position: absolute;
+       backface-visibility: hidden;
+    }
+
+    .front-card {
+        background: #2D2727;
+        background-size: contain;
+        border-radius: .6rem;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        padding: 2rem;
+    }
+
+    .back-card {
+       transform: rotateY(180deg);
+            /*background-color: #6589F9;*/
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        padding: 2rem;
+        }
+
+    .card_selected{
+        transform: rotateY(180deg);
+    }
+
+    .card_match .front-card{
+        background-color:#e8d7d7;
+       
+    }
